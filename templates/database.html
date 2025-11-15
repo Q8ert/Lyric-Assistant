@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<title>Database</title> <!-- Sets the title for the page -->
+<head>
+    <style>
+        .sidebarabovebutton { /* Create the css class*/
+            background-color: lightblue; /*Sets the color */
+            margin: 0 auto; /*Sets the position at the top right corner*/
+            width: 12%; /*Sets the width of the button*/
+            font-size: medium; /*Sets the size of the font*/
+            margin-left: 20px; /*Creates the separation from the left side*/
+            font-weight: bold; /*Makes the font bold*/
+            display: inline; /*All the objects of this class will be on the same line*/
+        }
+
+        .box {
+            background-color: lightcoral;
+            display: flex; /*It allows the objext alling on the next line*/
+            align-items: center; /*Sets the object to the center*/    
+            justify-content: space-between; /* Ensure content and button are on the same line */
+            text-align: left; /*Alling the text to the left side*/
+            width: 70%;
+            height: auto; /*Sets the hight of the object automatically*/
+            margin-top: 20px;/*Creates the separation from the top*/
+            margin-left: 250px; 
+            padding: 20px; /*Creates space arround the object*/
+            box-sizing: border-box; /*It creates borders and padding for the object*/
+        }
+
+        .head {
+            font-size: 40px; 
+            text-align: center; /*Sets text into the center*/
+        }
+
+        .button {
+            height: 50px; /*Sets the vertical size of the object*/
+            width: 200px; /*Sets the horizontal size of the object */
+            margin-right: 20px;
+        }
+
+        .h12 {
+            font-size: 50px; 
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .div1 {
+            width: 180px;
+            white-space: nowrap;
+            overflow: hidden; /*It allows the text to be scrolled*/
+            text-overflow: hidden; /*It allows the text to be scrolled*/
+            display: flex;
+            position: relative;
+        }
+        
+        .h1 {
+            font-size: 20px;
+            margin: 0;
+            display: inline-block;
+            will-change: transform;
+        }
+
+        .title {
+            font-weight: bold;
+        }
+
+        .div2 {
+            width: 180px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .h2 {
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column; /*Sets of the object of the same class above each other*/
+        }
+
+        .addnewsong {
+            background-color: lightcoral;
+            display: flex;
+            align-items: center;
+            justify-content: center; /*Object is placed in center of the container*/
+            text-align: end;
+            width: 150px;
+            height: 80px;
+            cursor: pointer;
+            position: fixed; /*Makes the position fixed, so it won't change even if screen will be scrolled down*/
+            left: 90%; /*Sets postion from left border*/
+            top: 88%; /*Sets postion from top border*/
+            font-weight: bold;
+        }
+        .delet{
+            height: 50px;
+            width: 70px;
+        }
+        .edit{
+            height: 50px;
+            margin-left: 20px;
+            width: 70px;
+        }
+        .image{
+            margin-right: 450px;
+        }
+    </style>
+    <script>
+        function boxcreator(dar, data) { //Creates function with two parameters
+            var container = document.getElementById('boxContainer'); //It connects to the oject with the id "boxContainer"
+            container.innerHTML = ''; // Clear previous content
+
+            for (var i = 0; i < dar; i++) { //It will repeat as many times as there are songs
+                var box = document.createElement('div'); //It makes variable box the devision or section 
+                var form = document.createElement('form'); //It makes the varaible form the container for different types of input elements
+                var button = document.createElement('button'); //It makes from the variable button the button
+                var div1 = document.createElement('div'); //It makes from the variable div1 the div1 text
+                var h1 = document.createElement('h1'); //It makes from the variable h1 the h1 text
+                var div2 = document.createElement('div'); //It makes from the variable div2 the div2 text
+                var h2 = document.createElement('h2'); //It makes from the variable h2 the h2 text
+                var content = document.createElement('div');
+                var delet = document.createElement('button');
+                var edit = document.createElement('button');
+                var image = document.createElement('img');
+                
+                box.className = 'box'; //Sets the name for the class for the variable box 
+                form.method = 'POST'; //Sets the method for the class for the variable form 
+                form.action = '/database'; //Specifies where to send the form-data when a form is submitted
+                button.className = 'button';
+                button.id = i; // Set unique ID for each button
+                button.setAttribute('onclick', "window.location.href = '/lyric';"); // Add onclick function
+                button.value = i; //Sets the unique value for each button
+                button.name = 'button_id'; //Sets the name for the button
+                button.type = 'submit'; //Sets the type for the button
+                button.textContent = 'Lyrics';  // Set button text
+
+                delet.className = 'delet';
+                delet.id = i;
+                delet.value = i;
+                delet.name = 'delet';
+                delet.type = 'submit';
+                delet.textContent = 'Delete'; 
+
+                edit.className = 'edit';
+                edit.id = i;
+                edit.value = i;
+                edit.name = 'edit';
+                edit.type = 'submit';
+                edit.textContent = 'Edit';
+
+                image.className = 'image';
+                image.src = data[i] ? data[i].image : 'Image'; // Use "image" from JSON data
+                image.width = 80;
+                image.height = 80;
+                
+                h1.className = 'h1';
+                h1.textContent = data[i] ? data[i].name : 'Lyrics';  // Use "name" from JSON data
+                
+                h2.className = 'h2';
+                h2.textContent = data[i] ? data[i].nameg : 'Title';//Use "nameg" from JSON data
+
+                div1.className = 'div1';
+                div2.className = 'div2';
+
+                content.className = 'content';
+                
+                div1.appendChild(h1); //It append the h1 to the element div1
+                div2.appendChild(h2); //It append the h2 to the element div2
+                content.appendChild(div1); //It append the h1 to the element content
+                content.appendChild(div2); //It append the h2 to the element content
+                
+                form.appendChild(image);
+                form.appendChild(button);
+                form.appendChild(delet);
+                form.appendChild(edit);
+
+                box.appendChild(content);
+                box.appendChild(form);
+
+                container.appendChild(box); 
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() { //Attaches an event handler to a specified element
+            var buttonCount = {{ button }}; //The ammount of songs is assigned to the variable buttonCount
+            var data = {{ data|tojson }}; //The songs lyrics dictionary is assigned to the variable data
+            boxcreator(buttonCount, data); //Calls to the function
+        });
+    </script>
+</head> 
+<body>
+    <div>
+        <button id="Enter" type="button" onclick="window.location.href = '/homepage';" class="sidebarabovebutton">Homepage</button>
+        <button id="Enter" type="button" onclick="window.location.href = '/translator';" class="sidebarabovebutton">Translator</button>
+        <h1 class="h12">Database of {{ username }}</h1> 
+        <div id="boxContainer"></div>
+    </div>
+    <button id="Enter" type="button" onclick="window.location.href = '/addnewsong';" class="addnewsong">Add New Song</button>
+</body>
+</html>

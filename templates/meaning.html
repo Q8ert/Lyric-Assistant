@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .sidebarabovebutton {
+            background-color: lightblue;
+            margin: 0 auto;
+            width: 12%;
+            font-size: medium;
+            margin-left: 20px;
+            font-weight: bold;
+            display: inline;
+        }
+
+        .comboboxorig {
+            width: 150px;
+            margin-top: 100px;
+            margin-left: 700px;
+        }
+        .comboboxtrans {
+            width: 150px;
+            margin-left: 100px;
+        }
+        .classs {
+            margin-top: 50px;
+            margin-left: 300px;
+            margin-right: 300px;
+            word-break: break-word;
+            font-size: large;
+        }
+
+        .withphoto {
+            margin-left: 50px;
+        }
+        .photo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <form action="/meaning" method="POST">
+        <div>
+            <button id="Enter" class="sidebarabovebutton" type="button" onclick="window.location.href='/homepage';">Home</button>
+            <button id="Enter" class="sidebarabovebutton" type="button" onclick="window.location.href='/database';">Database</button>
+        </div>
+        <div>
+            <select id="exampleList" name="exampleList" class="comboboxorig">
+                <!-- Options will be populated by JavaScript -->
+            </select>
+            <input type="checkbox" id="photo" name="photo" value="TRUE" class="withphoto">
+            <label for="lyric">With Photo?</label>
+        </div>
+        <button type="submit" style="margin-left: 750px;margin-top: 20px;">Submit</button>
+        <p class="classs">{{meaning}}</p>
+        <img src="{{photo}}" class="photo">
+    </form>
+    <script>
+        var start = 0;
+        var end = {{ button }};
+        var data = {{ data|tojson }};
+        var options = "";
+        for (var year = start; year < end; year++) {
+            var num = data[year] ? data[year].name : 'Lyrics';
+            options += "<option value='" + year + "'>" + num + "</option>";
+        }
+        document.getElementById("exampleList").innerHTML = options;
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+
+
+<!DOCTYPE html>
+<head>
+    <link rel='icon' href='https://apsnews.org/wp-content/uploads/2023/03/istockphoto-1175435360-612x612-1.jpeg' type='image/x-icon' >
+<title>Login Page</title> <!-- Sets the title for the page -->
+<style>
+    body {
+        font-family: Arial, sans-serif; /*Sets the font type*/
+        background-color: #f4f4f4; /*Sets the background color*/
+        display: flex; /*Allows the align function for this object*/
+        justify-content: center; /*Object is placed in center of the container*/
+        align-items: center; /*Align inside objects to the centr*/
+        height: 100vh; /*Sets the vertical position of the object*/
+        margin: 0; /*Sets the position to the top right*/
+    }
+
+    .login-form {
+        background-color: #fff; 
+        padding: 20px; /*Creates space arround the object*/
+        border-radius: 8px; /*Sets the border radius for the object*/
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /*Creates the shadow for the object*/
+    }
+
+    .login-form h2 {
+        text-align: center;
+        color: #333;
+        height: 50px; /*Sets the vertical size for the object*/
+        width: 600px; /*Sets the horizontal size for the object*/
+    }
+
+    .login-formbutton{
+        margin-left: 75%; /*Sets the space from left object*/
+        color: blue; /*Sets the color for the object*/
+    }
+
+    .input-group {
+        margin-bottom: 20px;/*Sets the space from bottom object*/
+    }
+
+    .input-group label {
+        display: block; /*Displaz each of the elemnt of this class from new line*/
+        color: #666;
+        margin-bottom: 5px;
+        margin-left: 20px;
+    }
+
+    .input-group input {
+        width: 90%;
+        padding: 10px;
+        border: 1px solid #ddd; /*Creates the border of the object*/
+        border-radius: 4px; 
+        text-align: left; /*Sets the object insode to the left*/
+        margin-left: 20px;
+    }
+
+    .login-formbutton {
+        width: 100%;
+        padding: 10px;
+        background-color: #5cb85c;
+        border: none; /*Sets that there is no border*/
+        border-radius: 4px; /*Makes the object round at the adges*/
+        color: white;
+        cursor: pointer; /*Sets the cursor image when it is on the button*/
+        font-size: 16px; /*Sets the font size*/
+        width: 94%; 
+        margin-left: 20px;
+    }
+
+    .login-formbutton:hover {
+        background-color: #4cae4c;
+    }
+
+    .checkbox{
+        margin-bottom: 20px;
+        margin-left: 22px;
+    }
+    .button {
+        width: 23%;
+        padding: 10px;
+        background-color: red;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+        margin-left: 240px; 
+        margin-top: 5px; /*Sets the space from top object*/
+    }
+    .flash.error {
+        color: red;
+        text-align: center;
+    }
+</style>
+</style>
+</head>
+<body>
+<div class="login-form">
+    <h2>Login</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p class="flash {{ category }}">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form action="/login" method="post">
+        <div class="input-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="input-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>  
+        <div>
+            <input type="checkbox" class="checkbox" id="Cockies" name="Cockies" value="TRUE">
+            <label for="Cockies">Remember Me!</label><br>
+        </div>
+        <button type="submit" class="login-formbutton">Login</button>
+        <button id="Enter" class="button" onclick="window.location.href = '/signup' ; ">Create Account</button>
+    </form>
+</div>
+</body>
+</html>

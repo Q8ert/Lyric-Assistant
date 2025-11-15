@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        body{
+            display: flex;
+            height: 600px;
+            justify-content: center;
+            align-items: center;
+        }
+        body button{
+            background-color: #5cb85c;
+            width: 200px;
+            margin-left: 150px;
+        }
+        .input{
+            text-align: left;
+            margin-right: 100px;
+            width: 170px;
+        }
+        .lyric{
+            margin-top: 15px;
+            width: 400px;
+            height: 300px;
+            display: table;
+            border : 1px solid #000;
+            margin-left: 40px;
+            margin-bottom: 30px;
+        }
+        .lyric textarea{
+            display: table-cell;
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            box-sizing: border-box;
+        }
+        bodys{
+            display: flex;
+            position: absolute;
+            left: -80px;
+            top: 15px;
+        }
+    </style>
+    <bodys>
+        <button id="Enter" type="button" onclick="window.location.href = '/database';">Back</button>
+    </bodys>
+    <body>
+        <form action="/addnewsong" method="post">
+                <div style="display: block;"> 
+                    <input id="name" name="name" type="text" placeholder="Name of The Song" class="input" required>
+                    <input id="nameg" name="nameg" type="text" placeholder="Name of The Group" class="input"  required>
+                </div>
+                <label class="lyric">
+                    <textarea placeholder="Lyric" name="lyric" id="lyric"></textarea>
+                </label>
+                <input placeholder="Link" name="image" id="image" type="text" class="input">
+                <button>Submit</button>
+        </form>
+    </body>
+</html>
